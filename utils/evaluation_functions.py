@@ -21,6 +21,8 @@ def evaluate_per_pixel(model, low_res_data, high_res_data, max_pixel=1.0):
     """
     # Predict high-resolution images
     pred_high_res = model.predict(low_res_data)
+    
+    high_res_data = high_res_data.astype(np.float32)
 
     # Compute per-pixel MSE and MAE
     per_pixel_mse = np.mean((pred_high_res - high_res_data) ** 2, axis=0)  # (H, W, C)

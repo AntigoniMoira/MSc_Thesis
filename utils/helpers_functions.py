@@ -1,7 +1,7 @@
 import os
 import numpy as np
-from scipy.ndimage import zoom
 from sklearn.model_selection import train_test_split
+import cv2
 
 def z_score_normalize(data, global_mean, global_Std):
     """
@@ -44,24 +44,20 @@ def denormalize_mae(mae_z_normalized, global_Std):
     """
     return mae_z_normalized * global_Std  # Reverse normalization (mean not needed for MAE)
 
-def interpolation(input_image, target_size, order):
+def interpolation(input_image, target_sizeor):
     """
     Resize an image using nearest-neighbor interpolation.
 
     Parameters:
     input_image (ndarray): Input image to be resized.
     target_size (tuple): Desired output size as (height, width).
-    order(int): The order of the spline interpolation (0 for nearest-neighbor and 3 for bicubic)
 
     Returns:
     ndarray: Resized image using nearest-neighbor interpolation.
     """
-    # Compute zoom factors for resizing
-    zoom_factors = (target_size[0] / input_image.shape[0], target_size[1] / input_image.shape[1])
-
-    # Apply zoom to resize the image based on zoom factors
-    upsampled_image = zoom(input_image, zoom_factors, order=order)  # order=0 for nearest-neighbor interpolation # order=3 for bicubic interpolation
-
+    
+    upsampled_image = cv2.resize(input_image, (target_sizeor[1], target_sizeor[0]), interpolation=cv2.INTER_CUBIC)
+    
     return upsampled_image
 
 def reshape(data):
@@ -92,7 +88,7 @@ def split_and_reshape(lr_data, hr_data):
 
     return reshape(x_train), reshape(x_val), reshape(y_train), reshape(y_val)
 
-def input_preprocessing(file_path, global_mean, global_Std, input_resize=False, target_size=(0, 0), order=0):
+def input_preprocessing(file_path, global_mean, global_Std, input_resize=False, target_size=(0, 0)):
     """
     Load and preprocess input data by normalizing and optionally resizing it.
 
@@ -102,7 +98,6 @@ def input_preprocessing(file_path, global_mean, global_Std, input_resize=False, 
     global_Std (float): Standard deviation of the data distribution.
     input_resize (bool, optional): Whether to resize the input images. Defaults to False.
     target_size (tuple): The target size for resizing the images (height, width).
-    order(int): The order of the spline interpolation (0 for nearest-neighbor and 3 for bicubic)
 
     Returns:
     array-like: The preprocessed input data.
@@ -112,7 +107,7 @@ def input_preprocessing(file_path, global_mean, global_Std, input_resize=False, 
     if input_resize:
       upsampled_data = []
       for img in lr_data:
-          upsampled_img = interpolation(img, target_size, order)
+          upsampled_img = interpolation(img, target_size)
           upsampled_data.append(upsampled_img)
       lr_data = np.array(upsampled_data)
 
@@ -240,7 +235,7 @@ def split_data(dates, low_res_data, high_res_data):
 
     return X_train, X_val, X_test, y_train, y_val, y_test, dates_train, dates_val, dates_test
 
-def read_dataset(project_path, dates_path, lr_data_path, hr_data_path, season, year_start, year_end, global_mean, global_Std, upsampling=False, target_size=(0,0), order=0):
+def read_dataset(project_path, dates_path, lr_data_path, hr_data_path, season, year_start, year_end, global_mean, global_Std, upsampling=False, target_size=(0,0)):
     """
     Reads and processes seasonal climate data over a specified range of years.
     
@@ -256,7 +251,6 @@ def read_dataset(project_path, dates_path, lr_data_path, hr_data_path, season, y
     global_Std (float): The global standard deviation used for normalization.
     upsampling (bool, optional): Whether to resize the input images. Defaults to True.
     target_size (tuple, optional): The target size for resizing low-resolution data.
-    order(int, optional): The order of the spline interpolation (0 for nearest-neighbor and 3 for bicubic)
     
     Returns:
     tuple: A tuple containing the following datasets split into training, validation, and test sets:
@@ -285,7 +279,7 @@ def read_dataset(project_path, dates_path, lr_data_path, hr_data_path, season, y
         season_dates_data = get_season_data(dates_data, year, season)
         dates.append(season_dates_data)
         
-        lr_data = input_preprocessing(os.path.join(project_path, lr_data_path, str(year)+'_t2m_sfc.npy'), global_mean, global_Std, upsampling,target_size, order)
+        lr_data = input_preprocessing(os.path.join(project_path, lr_data_path, str(year)+'_t2m_sfc.npy'), global_mean, global_Std, upsampling,target_size)
         season_lr_data = get_season_data(lr_data, year, season)
         low_res_data.append(season_lr_data)
         
