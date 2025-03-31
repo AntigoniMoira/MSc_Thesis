@@ -51,7 +51,7 @@ def evaluate_per_pixel(model, low_res_data, high_res_data, max_pixel=1.0):
 
     return per_pixel_mse, per_pixel_mae, per_pixel_psnr, per_pixel_ssim
 
-def delta_change_evaluate_per_pixel(pred_high_res, high_res_data, max_pixel=1.0):
+def baseline_evaluate_per_pixel(pred_high_res, high_res_data, max_pixel=1.0):
     """
     Evaluates the SRCNN model per pixel with TensorFlow-based PSNR calculation.
 
