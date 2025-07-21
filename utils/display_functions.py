@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def plot_to_compare(low_res, high_res, model_output, colormap = 'gray'):
     """
     Plots a comparison between low-resolution, model-generated high-resolution, 
