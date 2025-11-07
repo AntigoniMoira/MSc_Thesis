@@ -26,7 +26,7 @@ The downscaling task was formulated as a <b>Single Image Super-Resolution</b> pr
    ![](./images/myCAE.png)
 2. Super-Resolution Convolutional Neural Network (SRCNN)
    <p align="center">
-      <img src="images/mSRCNN.png" alt="SRCNN" width="70%">
+      <img src="./images/mSRCNN.png" alt="SRCNN" width="70%">
    </p>
 3. Enhanced Deep Super-Resolution Network (EDSR)
    ![](./images/myEDSR.png)
