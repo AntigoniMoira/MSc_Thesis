@@ -18,6 +18,17 @@ The ground truth data used for training the DL models comes from the **ERA5 rean
 - <b>Temporal resolution</b>: 6-hourly (00:00, 06:00, 12:00, 18:00 UTC)
 - <b>Spatial domain</b>: Latitude 80° N to 0°, Longitude 60° W to 85° E
 
+## ⚙️ Preprocessing
+
+<p align="justify">To create a controlled downscaling problem, the native 0.25° data were upscaled to 0.5° and 1°, and the models were then tasked with gradually reconstructing the original high-resolution data.</p> 
+
+So, the preprocessing included the following steps:
+
+1. <b>Upscaling</b>: Bicubic interpolation to match target resolution (from 0.25° x 0.25° to 0.5° x 0.5° and 1° x 1°)
+2. <b>Normalization</b>: Z-score standardization
+3. <b>Shuffling</b>: Randomize data order to remove temporal bias
+4. <b>Splitting</b>: 70% training, 15% validation, 15% testing
+
 ## 🤖 Model Architecture
 
 The downscaling task was formulated as a <b>Single Image Super-Resolution</b> problem, and four network architectures were evaluated, with <b>EDSR</b> emerging as the best-performing model.
@@ -28,7 +39,7 @@ The downscaling task was formulated as a <b>Single Image Super-Resolution</b> pr
    </p>
 2. Super-Resolution Convolutional Neural Network (SRCNN)
    <p align="center">
-      <img src="./images/mySRCNN.png" alt="SRCNN" width="70%">
+      <img src="./images/mySRCNN.png" alt="SRCNN" width="60%">
    </p>
 3. Enhanced Deep Super-Resolution Network (EDSR)
    <p align="center">
