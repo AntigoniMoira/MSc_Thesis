@@ -65,12 +65,13 @@ In addition, a combination of these two approaches was also explored.
   <img src="./images/myEDSR_DEM.png" alt="EDSR_DEM" width="50%">
 </p>
 
-## 📊 Final Results
+## 📊 Results
 
+<p align="justify">First, four different model architectures were compared, and the best-performing one — <b>EDSR</b> — was selected for the subsequent steps of the study. Next, the development of <b>seasonal models</b> was tested to determine whether they could improve T2m downscaling performance. However, results showed that a <b>single universal model</b> performed better overall, likely because the spatial domain is large and seasonal patterns vary across the region.</p>
+<p align="justify">Finally, different <b>elevation integration strategies</b> were evaluated, and the <b>combination of early and late fusion</b> produced the best results. The following image illustrates the difference between <b>non-DEM-aware</b> and <b>DEM-aware</b> downscaling, showing clear improvements in challenging areas with complex terrain.</p>
 
-### 📌 Notes
-
-- All models were implemented using **Scikit-learn** and **TensorFlow/Keras**.
-- Visualizations were created using **Matplotlib** and **Seaborn**.
+<p align="center">
+  <img src="./images/final_eu.png" alt="results_eu" width="50%">
+</p>
 
 [^1]: [ERA5 hourly data on single levels from 1940 to present](https://doi.org/10.24381/cds.adbb2d47)
