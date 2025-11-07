@@ -23,15 +23,21 @@ The ground truth data used for training the DL models comes from the **ERA5 rean
 The downscaling task was formulated as a <b>Single Image Super-Resolution</b> problem, and four network architectures were evaluated, with <b>EDSR</b> emerging as the best-performing model.
 
 1. Convolutional Auto-Encoder (CAE)
-   ![](./images/myCAE.png)
+   <p align="center">
+      <img src="./images/myCAE.png" alt="CAE" width="70%">
+   </p>
 2. Super-Resolution Convolutional Neural Network (SRCNN)
    <p align="center">
       <img src="./images/mySRCNN.png" alt="SRCNN" width="70%">
    </p>
 3. Enhanced Deep Super-Resolution Network (EDSR)
-   ![](./images/myEDSR.png)
+   <p align="center">
+      <img src="./images/myEDSR.png" alt="EDSR" width="70%">
+   </p>
 4. Residual Channel Attention Network (RCAN)
-   ![](./images/myRCAN.png)
+   <p align="center">
+      <img src="./images/myRCAN.png" alt="RCAN" width="70%">
+   </p>
 
 ## 📊 Final Results
 
