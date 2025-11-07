@@ -39,7 +39,7 @@ The downscaling task was formulated as a <b>Single Image Super-Resolution</b> pr
    </p>
 2. Super-Resolution Convolutional Neural Network (SRCNN)
    <p align="center">
-      <img src="./images/mySRCNN.png" alt="SRCNN" width="60%">
+      <img src="./images/mySRCNN.png" alt="SRCNN" width="50%">
    </p>
 3. Enhanced Deep Super-Resolution Network (EDSR)
    <p align="center">
@@ -49,6 +49,21 @@ The downscaling task was formulated as a <b>Single Image Super-Resolution</b> pr
    <p align="center">
       <img src="./images/myRCAN.png" alt="RCAN" width="70%">
    </p>
+
+## 🏔️ Elevation Integration Strategies
+
+Two main elevation integration strategies were tested:
+
+- <b>Early Fusion</b>: elevation data is concatenated with the low-resolution temperature input at the initial stage
+
+- <b>Late Fusion</b>: elevation data is introduced later in the network, closer to the output layer
+
+In addition, a combination of these two approaches was also explored.
+
+
+<p align="center">
+  <img src="./images/myEDSR_DEM.png" alt="EDSR_DEM" width="50%">
+</p>
 
 ## 📊 Final Results
 
