@@ -71,13 +71,13 @@ In addition, a combination of these two approaches was also explored.
 <p align="justify">Finally, different <b>elevation integration strategies</b> were evaluated, and the <b>combination of early and late fusion</b> produced the best results. The following image illustrates the difference between <b>no-DEM-aware</b> and <b>DEM-aware</b> downscaling, showing clear improvements in challenging areas with complex terrain.</p>
 
 <p align="center">
-  <img src="./images/final_eu.png" alt="results_eu" width="70%">
+  <img src="./images/final_eu.png" alt="results_eu" width="80%">
 </p>
 
 To summarize the results visually, these maps display the MAE across the entire domain for both the <b>non-DEM-aware</b> model and the best <b>DEM-augmented</b> model. Errors are notably higher in regions with complex terrain, such as mountainous and coastal areas, but incorporating elevation data clearly improves the performance of the downscaling method.
 
 <p align="center">
-  <img src="./images/final_degrees_mae.png" alt="MAE" width="70%">
+  <img src="./images/final_degrees_mae.png" alt="MAE" width="90%">
 </p>
 
 [^1]: [ERA5 hourly data on single levels from 1940 to present](https://doi.org/10.24381/cds.adbb2d47)
